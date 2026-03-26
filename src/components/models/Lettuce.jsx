@@ -5,19 +5,29 @@ Command: npx gltfjsx@6.5.3 lettuce.glb
 
 import React from "react";
 import { useGLTF } from "@react-three/drei";
+import { useCylinder } from "@react-three/cannon";
+
 function Lettuce(props) {
   const { nodes, materials } = useGLTF("/models/lettuce.glb");
+  const [ref] = useCylinder(() => ({
+    mass: 0.03, // ~30g – light leafy
+    args: [1, 1, 0.055, 24],
+    position: props.position ?? [0, 0, 0],
+    rotation: props.rotation ?? [0, 0, 0],
+    material: { friction: 0.35, restitution: 0.1 },
+    linearDamping: 0.25,
+    angularDamping: 0.5,
+    sleepSpeedLimit: 0.08,
+    sleepTimeLimit: 0.15,
+    ...props.physicsProps,
+  }));
   return (
-    <group {...props} dispose={null}>
-      <group
-        position={[0.337, 0.513, 0]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        scale={0.1}
-      >
+    <group {...props} dispose={null} ref={ref}>
+      <group position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={0.1}>
         <mesh
           geometry={nodes.Circle006_burger_0.geometry}
           material={materials.burger}
-          position={[0, 0, 2.427]}
+          position={[0, 0, 0]}
         />
       </group>
     </group>

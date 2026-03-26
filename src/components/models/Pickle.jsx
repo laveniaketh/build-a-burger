@@ -5,13 +5,26 @@ Command: npx gltfjsx@6.5.3 pickle.glb
 
 import React from "react";
 import { useGLTF } from "@react-three/drei";
+import { useCylinder } from "@react-three/cannon";
 
 function Pickle(props) {
   const { nodes, materials } = useGLTF("/models/pickle.glb");
+
+  const [ref] = useCylinder(() => ({
+    mass: 0.015,
+    args: [0.25, 0.25, 0.06, 16], // radiusTop, radiusBottom, height, segments
+    position: props.position ?? [0, 0, 0],
+    rotation: props.rotation ?? [0, 0, 0],
+    material: { friction: 0.2, restitution: 0.2 },
+    linearDamping: 0.2,
+    angularDamping: 0.4,
+    ...props.physicsProps,
+  }));
+
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} ref={ref}>
       <group
-        position={[0.071, 0.26, 0.046]}
+        position={[0, 0, 0.0]}
         rotation={[-Math.PI / 2, 0, -2.599]}
         scale={0.1}
       >

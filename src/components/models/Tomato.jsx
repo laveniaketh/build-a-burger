@@ -5,15 +5,31 @@ Command: npx gltfjsx@6.5.3 tomato.glb
 
 import React from "react";
 import { useGLTF } from "@react-three/drei";
+import { useCylinder } from "@react-three/cannon";
 
 function Tomato(props) {
   const { nodes, materials } = useGLTF("/models/tomato.glb");
+
+  // Tomato slice – moderately heavy, thin, slightly slippery (juicy)
+  const [ref] = useCylinder(() => ({
+    mass: 0.07, // ~70g – dense tomato slice
+    args: [0.9, 0.9, 0.08, 16],
+    position: props.position ?? [0, 0, 0],
+    rotation: props.rotation ?? [0, 0, 0],
+    material: { friction: 0.25, restitution: 0.12 }, // slippery like a wet tomato
+    linearDamping: 0.2,
+    angularDamping: 0.45,
+    sleepSpeedLimit: 0.1, // body sleeps when nearly stopped
+    sleepTimeLimit: 0.5, // seconds before it sleeps
+    ...props.physicsProps,
+  }));
+
   return (
-    <group {...props} dispose={null}>
+    <group {...props} dispose={null} ref={ref}>
       <mesh
         geometry={nodes.Cylinder008_burger_0.geometry}
         material={materials.burger}
-        position={[0.337, 0.14, 0]}
+        position={[0, 0, 0]}
         rotation={[-Math.PI / 2, 0, 0]}
         scale={0.1}
       />

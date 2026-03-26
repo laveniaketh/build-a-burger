@@ -5,20 +5,31 @@ Command: npx gltfjsx@6.5.3 top-bun.glb
 
 import React from "react";
 import { useGLTF } from "@react-three/drei";
+import { useCylinder } from "@react-three/cannon";
 
 function TopBun(props) {
   const { nodes, materials } = useGLTF("/models/top-bun.glb");
+
+  const [ref] = useCylinder(() => ({
+    mass: 0.12, // ~120g – soft bread bun
+    args: [0.7, 1, 0.5, 24],
+    position: props.position ?? [0, 0, 0],
+    rotation: props.rotation ?? [0, 0, 0],
+    material: { friction: 0.6, restitution: 0.15 },
+    linearDamping: 0.4,
+    angularDamping: 0.8,
+    sleepSpeedLimit: 0.1, // body sleeps when nearly stopped
+    sleepTimeLimit: 0.5, // seconds before it sleeps
+    ...props.physicsProps,
+  }));
+
   return (
-    <group {...props} dispose={null}>
-      <group
-        position={[0.337, -6.624, 0]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        scale={0.1}
-      >
+    <group {...props} dispose={null} ref={ref}>
+      <group position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={0.1}>
         <mesh
           geometry={nodes.Circle007_burger_0.geometry}
           material={materials.burger}
-          position={[0, 0, 94.643]}
+          position={[0, 0, 0]}
         />
       </group>
     </group>

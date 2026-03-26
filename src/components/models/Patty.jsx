@@ -5,20 +5,31 @@ Command: npx gltfjsx@6.5.3 patty.glb
 
 import React from "react";
 import { useGLTF } from "@react-three/drei";
+import { useCylinder } from "@react-three/cannon";
 
 function Patty(props) {
   const { nodes, materials } = useGLTF("/models/patty.glb");
+
+  const [ref] = useCylinder(() => ({
+    mass: 0.18,
+    args: [1, 1, 0.22, 24],
+    position: props.position ?? [0, 0, 0],
+    rotation: props.rotation ?? [0, 0, 0],
+    material: { friction: 0.8, restitution: 0.05 },
+    linearDamping: 0.5,
+    angularDamping: 0.9,
+    sleepSpeedLimit: 0.1, // body sleeps when nearly stopped
+    sleepTimeLimit: 0.5, // seconds before it sleeps
+    ...props.physicsProps,
+  }));
+
   return (
-    <group {...props} dispose={null}>
-      <group
-        position={[0.337, -1.547, 0]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        scale={0.1}
-      >
+    <group {...props} dispose={null} ref={ref}>
+      <group position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={0.1}>
         <mesh
           geometry={nodes.Circle005_burger_0.geometry}
           material={materials.burger}
-          position={[-1.433, -1.433, 31.357]}
+          position={[0, 0, 0]}
         />
       </group>
     </group>

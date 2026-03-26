@@ -4,20 +4,27 @@ Command: npx gltfjsx@6.5.3 bottom-bun.glb
 */
 
 import { useGLTF } from "@react-three/drei";
+import { useCylinder } from "@react-three/cannon";
 
 function BottomBun(props) {
   const { nodes, materials } = useGLTF("/models/bottom-bun.glb");
+
+  const [ref] = useCylinder(() => ({
+    mass: 1,
+    args: [1, 0.95, 0.25, 24],
+    position: props.position ?? [0, 0, 0],
+    rotation: props.rotation ?? [0, 0, 0],
+    material: { friction: 0.9, restitution: 0.05 },
+    ...props.physicsProps,
+  }));
+
   return (
-    <group {...props} dispose={null}>
-      <group
-        position={[0.337, 1.02, 0]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        scale={0.1}
-      >
+    <group {...props} dispose={null} ref={ref}>
+      <group position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={0.1}>
         <mesh
           geometry={nodes.Circle004_burger_0.geometry}
           material={materials.burger}
-          position={[0, 0, 7.441]}
+          position={[0, 0, 0]}
         />
       </group>
     </group>

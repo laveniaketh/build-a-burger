@@ -5,20 +5,31 @@ Command: npx gltfjsx@6.5.3 onion.glb
 
 import React from "react";
 import { useGLTF } from "@react-three/drei";
+import { useCylinder } from "@react-three/cannon";
 
 function Onion(props) {
   const { nodes, materials } = useGLTF("/models/onion.glb");
+
+  const [ref] = useCylinder(() => ({
+    mass: 0.02, // ~20g – thin onion ring
+    args: [0.42, 0.42, 0.06, 16],
+    position: props.position ?? [0, 0, 0],
+    rotation: props.rotation ?? [0, 0, 0],
+    material: { friction: 0.4, restitution: 0.25 },
+    linearDamping: 0.2,
+    angularDamping: 0.5,
+    sleepSpeedLimit: 0.1, // body sleeps when nearly stopped
+    sleepTimeLimit: 0.5, // seconds before it sleeps
+    ...props.physicsProps,
+  }));
+
   return (
-    <group {...props} dispose={null}>
-      <group
-        position={[0.098, 0.135, 0.126]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        scale={0.1}
-      >
+    <group {...props} dispose={null} ref={ref}>
+      <group position={[0, 0, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={0.1}>
         <mesh
           geometry={nodes.Cylinder010_burger_0.geometry}
           material={materials.burger}
-          position={[-0.937, 0.937, 1.469]}
+          position={[0, 0, 0]}
         />
       </group>
     </group>
