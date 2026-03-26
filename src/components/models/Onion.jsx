@@ -16,8 +16,8 @@ function Onion(props) {
     position: props.position ?? [0, 0, 0],
     rotation: props.rotation ?? [0, 0, 0],
     material: { friction: 0.4, restitution: 0.25 },
-    linearDamping: 0.2,
-    angularDamping: 0.5,
+    linearDamping: 0.5,
+    angularDamping: 0.6,
     sleepSpeedLimit: 0.1, // body sleeps when nearly stopped
     sleepTimeLimit: 0.5, // seconds before it sleeps
     ...props.physicsProps,

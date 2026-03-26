@@ -16,8 +16,8 @@ function Pickle(props) {
     position: props.position ?? [0, 0, 0],
     rotation: props.rotation ?? [0, 0, 0],
     material: { friction: 0.2, restitution: 0.2 },
-    linearDamping: 0.2,
-    angularDamping: 0.4,
+    linearDamping: 0.7,
+    angularDamping: 0.7,
     ...props.physicsProps,
   }));
 

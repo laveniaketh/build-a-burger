@@ -29,17 +29,17 @@ const App = () => {
       <OrbitControls />
       <Physics iterations={20} tolerance={0.001} allowSleep={true}>
         {/* <Debug color="black" scale={1}> */}
-        <TopBun scale={0.1} position={[0, 1.5, 0]} />
-        <Pickle scale={0.1} position={[-0.5, 1.3, 0.25]} />
-        <Pickle scale={0.1} position={[-0.5, 1.3, -0.25]} />
-        <Pickle scale={0.1} position={[0.7, 1.3, 0]} />
-        <Onion scale={0.1} position={[0.1, 1.3, 0.4]} />
-        <Onion scale={0.1} position={[0.1, 1.3, -0.5]} />
-        <Tomato scale={0.1} position={[0, 1.1, 0]} />
-        <Cheese scale={0.1} position={[0, 0.8, 0]} />
-        <Patty scale={0.1} position={[0, 0.6, 0]} />
-        <Lettuce scale={0.1} position={[0, 0.3, 0]} />
-        <BottomBun scale={0.1} position={[0, 0, 0]} />
+        <TopBun scale={0.1} position={[0, 8, 0]} />
+        <Pickle scale={0.1} position={[-0.5, 6, 0.25]} />
+        <Pickle scale={0.1} position={[-0.5, 6, -0.25]} />
+        <Pickle scale={0.1} position={[0.7, 6, 0]} />
+        <Onion scale={0.1} position={[0.1, 6, 0.4]} />
+        <Onion scale={0.1} position={[0.1, 6, -0.5]} />
+        <Tomato scale={0.1} position={[0, 5, 0]} />
+        <Cheese scale={0.1} position={[0, 4, 0]} />
+        <Patty scale={0.1} position={[0, 3, 0]} />
+        <Lettuce scale={0.1} position={[0, 2, 0]} />
+        <BottomBun scale={0.1} position={[0, 1, 0]} />
 
         <Ground position={[0, -1, 0]} />
         {/* </Debug> */}

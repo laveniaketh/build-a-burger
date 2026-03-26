@@ -16,9 +16,9 @@ function Tomato(props) {
     args: [0.9, 0.9, 0.08, 16],
     position: props.position ?? [0, 0, 0],
     rotation: props.rotation ?? [0, 0, 0],
-    material: { friction: 0.25, restitution: 0.12 }, // slippery like a wet tomato
-    linearDamping: 0.2,
-    angularDamping: 0.45,
+    material: { friction: 0.35, restitution: 0.12 }, // slippery like a wet tomato
+    linearDamping: 0.9,
+    angularDamping: 0.9,
     sleepSpeedLimit: 0.1, // body sleeps when nearly stopped
     sleepTimeLimit: 0.5, // seconds before it sleeps
     ...props.physicsProps,
