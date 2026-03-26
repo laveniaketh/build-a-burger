@@ -41,7 +41,7 @@ const App = () => {
         <Lettuce scale={0.1} position={[0, 0.3, 0]} />
         <BottomBun scale={0.1} position={[0, 0, 0]} />
 
-        <Ground position={[0, -0.1, 0]} />
+        <Ground position={[0, -1, 0]} />
         {/* </Debug> */}
       </Physics>
     </Canvas>

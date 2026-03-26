@@ -5,12 +5,13 @@ const Ground = (props) => {
   const [ref] = usePlane(() => ({
     rotation: [-Math.PI / 2, 0, 0],
     position: props.position ?? [0, 0, 0],
+    // args: [100, 100],
     ...props,
   }));
   return (
     <mesh ref={ref}>
-      <planeGeometry args={[100, 100]} />
-      <meshStandardMaterial color="green" />
+      <planeGeometry args={[5, 5]} />
+      <meshStandardMaterial color="white" />
     </mesh>
   );
 };
