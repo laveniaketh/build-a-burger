@@ -10,8 +10,8 @@ import { useCylinder } from "@react-three/cannon";
 function Lettuce(props) {
   const { nodes, materials } = useGLTF("/models/lettuce.glb");
   const [ref] = useCylinder(() => ({
-    mass: 0.03, // ~30g – light leafy
-    args: [1, 1, 0.055, 24],
+    mass: 0.03,
+    args: [1, 1, 0.06, 24],
     position: props.position ?? [0, 0, 0],
     rotation: props.rotation ?? [0, 0, 0],
     material: { friction: 0.35, restitution: 0.1 },

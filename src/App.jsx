@@ -16,11 +16,12 @@ const App = () => {
   return (
     <Canvas
       camera={{
-        fov: 45,
+        fov: 50,
         aspect: aspect,
         near: 0.1,
         far: 100,
-        position: [4, 7, 6],
+        // position: [4, 2, 3],
+        position: [5, 5, 5],
       }}
     >
       <color attach="background" args={["skyblue"]} />

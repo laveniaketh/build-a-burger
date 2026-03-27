@@ -13,7 +13,7 @@ function Tomato(props) {
   // Tomato slice – moderately heavy, thin, slightly slippery (juicy)
   const [ref] = useCylinder(() => ({
     mass: 0.07, // ~70g – dense tomato slice
-    args: [0.9, 0.9, 0.08, 16],
+    args: [0.9, 0.9, 0.1, 16],
     position: props.position ?? [0, 0, 0],
     rotation: props.rotation ?? [0, 0, 0],
     material: { friction: 0.35, restitution: 0.12 }, // slippery like a wet tomato
